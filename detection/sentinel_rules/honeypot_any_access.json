@@ -1,0 +1,15 @@
+{
+  "name": "Honeypot Any Access",
+  "displayName": "HONEYPOT: Any interaction with decoy resource",
+  "description": "Any access to a honeypot resource is a confirmed unauthorized threat actor. Immediate P1 incident.",
+  "severity": "High",
+  "enabled": true,
+  "query": "AzureActivity\n| where Tags contains \"honeypot=true\"\n| project TimeGenerated, Caller, ResourceId, OperationNameValue, ActivityStatusValue",
+  "queryFrequency": "PT5M",
+  "queryPeriod": "PT5M",
+  "triggerOperator": "GreaterThan",
+  "triggerThreshold": 0,
+  "suppressionEnabled": false,
+  "tactics": ["Reconnaissance", "InitialAccess"],
+  "techniques": ["T1046", "T1190"]
+}

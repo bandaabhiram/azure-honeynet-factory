@@ -1,0 +1,12 @@
+{
+  "name": "Honeypot Data Exfiltration",
+  "displayName": "HONEYPOT: Blob download from decoy storage",
+  "description": "Data exfiltration detected from honeypot storage account. P1 incident.",
+  "severity": "High",
+  "enabled": true,
+  "query": "StorageBlobLogs\n| where AccountName contains \"honeynet\"\n| where OperationName == \"GetBlob\"\n| project TimeGenerated, CallerIpAddress, AccountName, BlobName, UserAgentHeader",
+  "queryFrequency": "PT5M",
+  "queryPeriod": "PT5M",
+  "triggerOperator": "GreaterThan",
+  "triggerThreshold": 0
+}
